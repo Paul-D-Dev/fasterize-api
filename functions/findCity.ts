@@ -6,7 +6,7 @@ import { EdgeLocations } from "../interfaces/cloudfront-edge-locations.interface
  * @param code IATA code
  * @returns name of the city || ''
  */
-export const findCity = (locations: EdgeLocations, code: string ) => {
+export const findCity = (locations: EdgeLocations, code: string | null ) => {
     if (code !== null) {
         return locations.nodes[code.substring(0,3)].city;
     } else {
