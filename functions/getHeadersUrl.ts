@@ -10,6 +10,7 @@ export const getHeadersUrl = async (url: string) => {
         const healdersUrl = await fetch(url, {method: 'HEAD'});
         return healdersUrl;
     } catch (e) {
-        console.error(e.message);
+        console.error('Error getHeadersUrl', e);
+        throw new Error("HEADER UNDEFINED");
     }
 }
