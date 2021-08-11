@@ -1,4 +1,3 @@
-
 /**
  * This methods transform string of result to an array of values meaning of flags
  * @param flag string
@@ -8,8 +7,12 @@ export const transformFlag = (flag: string | null): string[] => {
     if (flag === undefined || flag === null || flag === '') {
         return [];
     } else {
-        const flags = flag.split(',');
-        return flags.map(flag => values[flag]);
+        let flags = flag.split(',');
+        flags = flags
+                    .map(flag => flag in values ?  values[flag] : '')
+                    // Remove potential '' in flags
+                    .filter(flag => flag !== '');
+        return flags;
     }
 }
 
