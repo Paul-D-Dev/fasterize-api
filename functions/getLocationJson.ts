@@ -7,7 +7,7 @@ import { EdgeLocations } from "../interfaces/cloudfront-edge-locations.interface
  */
 export const getLocationJson = async (): Promise<EdgeLocations> => {
     try {
-        const locations = await fetch('https://www.cloudping.cloud/cloudfront-edge-locations.json1');
+        const locations = await fetch('https://www.cloudping.cloud/cloudfront-edge-locations.json');
         let response = await locations.json();     
         return response;
     } catch (error) {
