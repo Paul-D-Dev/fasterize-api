@@ -9,8 +9,8 @@ export const getHeadersUrl = async (url: string) => {
     try {
         const healdersUrl = await fetch(url, {method: 'HEAD'});
         return healdersUrl;
-    } catch (e) {
-        console.error('Error getHeadersUrl', e);
-        throw new Error("HEADER UNDEFINED");
+    } catch (error) {
+        console.error('Error getHeadersUrl', error);
+        throw new Error("FAILED_FECTH_HEADERS");
     }
 }
