@@ -1,6 +1,6 @@
 import cors from 'cors';
 import express from 'express';
-import { HomeController } from './controllers/HomeController';
+import { HomeController } from './controllers/home.controller';
 const app = express();
 const PORT = 3004;
 app.use(cors());
