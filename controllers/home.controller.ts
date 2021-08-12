@@ -3,6 +3,7 @@ import { getHeadersUrl } from '../functions/getHeadersUrl';
 import { getLocationJson } from '../functions/getLocationJson';
 import { ResponsePlug } from '../interfaces/responsePlug.interface';
 import { HomeService } from '../services/home.service';
+import { validUrl } from './../functions/validUrl';
 
 export const HomeController = (app : Application) => {
     const router = express.Router();
@@ -14,6 +15,10 @@ export const HomeController = (app : Application) => {
 
     router.get('/:url', async (req: Request, res: Response) => {
         const url: string = req.params.url ;
+        const stringIsURL = validUrl(url);
+        if (stringIsURL === false) {
+            return res.status(400).send('NOT AN URL');
+        }
     
         try {
             const responseRequestUrl =  await getHeadersUrl(url);            
