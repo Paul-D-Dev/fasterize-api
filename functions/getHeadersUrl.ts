@@ -7,10 +7,9 @@ import fetch from "node-fetch";
  */
 export const getHeadersUrl = async (url: string) => {
     try {
-        const healdersUrl = await fetch(url, {method: 'HEAD'});
-        return healdersUrl;
+        const headersUrl = await fetch(url, {method: 'HEAD'});
+        return headersUrl;
     } catch (error) {
-        console.error('Error getHeadersUrl', error);
         throw new Error("FAILED_FECTH_HEADERS");
     }
 }

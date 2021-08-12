@@ -1,7 +1,6 @@
 import express, { Application, Request, Response } from 'express';
 import { getHeadersUrl } from '../functions/getHeadersUrl';
 import { getLocationJson } from '../functions/getLocationJson';
-import { EdgeLocations } from '../interfaces/cloudfront-edge-locations.interface';
 import { ResponsePlug } from '../interfaces/responsePlug.interface';
 import { HomeService } from '../services/home.service';
 
@@ -15,11 +14,10 @@ export const HomeController = (app : Application) => {
 
     router.get('/:url', async (req: Request, res: Response) => {
         const url: string = req.params.url ;
-        let error: Error = {} as Error;
     
         try {
-            const responseRequestUrl =  await getHeadersUrl(url);
-            const locationJson: EdgeLocations = await getLocationJson();
+            const responseRequestUrl =  await getHeadersUrl(url);            
+            let locationJson = await getLocationJson();
             const status = responseRequestUrl.status;
             const headers = responseRequestUrl.headers;
             const plug: ResponsePlug = homeService.setResponseUrlPlug(headers, status, locationJson);            
@@ -27,10 +25,9 @@ export const HomeController = (app : Application) => {
             res.status(200).send(plug);
     
         } catch (err) {
-            error = err;
-            console.error('headers', error);
-            if (error.message === 'HEADER UNDEFINED') {
-                return res.status(404).send(error);
+            console.error('url request', err);
+            if (err.message === 'FAILED_FECTH_HEADERS') {
+                return res.status(404).send('NOT FOUND RESULT FOR THIS URL');
             }
         }
     })
