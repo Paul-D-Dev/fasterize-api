@@ -1,11 +1,9 @@
-import { HomeService } from '../services/home.service';
-import express, { Application, Request, response, Response } from 'express';
-import { findCity } from '../functions/findCity';
+import express, { Application, Request, Response } from 'express';
 import { getHeadersUrl } from '../functions/getHeadersUrl';
 import { getLocationJson } from '../functions/getLocationJson';
-import { transformFlag } from '../functions/transformFlag';
 import { EdgeLocations } from '../interfaces/cloudfront-edge-locations.interface';
 import { ResponsePlug } from '../interfaces/responsePlug.interface';
+import { HomeService } from '../services/home.service';
 
 export const HomeController = (app : Application) => {
     const router = express.Router();

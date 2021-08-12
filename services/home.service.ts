@@ -9,7 +9,6 @@ export class HomeService {
         const plug: ResponsePlug = {} as ResponsePlug;
 
         let flag: string | null = headers.get('x-fstrz') || null;
-            console.log('flag', flag);
             const flags: string[] = transformFlag(flag);
             
             if (flags.includes('optimisée') || flags.length > 0) {
